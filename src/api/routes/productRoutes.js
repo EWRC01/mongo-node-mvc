@@ -42,9 +42,18 @@ router.get('/product/:id', function (req, res) {
 
 
 // Patch one product
-router.patch('/product/:id', function(req, res){
-    res.send("This action patch one product")
+// Patch one product
+router.patch('/product/:id', function (req, res) {
+    const { id } = req.params;
+    const { title, description, price } = req.body;
+
+    productSevice.updateProduct(id, title, description, price)
+        .then(updatedProduct => res.send(updatedProduct))
+        .catch(error => {
+            res.status(500).send({ error: 'Internal Server Error' });
+        });
 });
+
 
 // Delete one product
 router.delete('/product/:id', function(req, res){
