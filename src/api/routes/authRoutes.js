@@ -5,19 +5,17 @@ const authService = require('../auth/service/authService');
 
 router.use(express.json());
 
-router.post('/login', function(req, res){
-    const {username, password} = req.body
+router.post('/login', function(req, res) {
+    const { username, password } = req.body;
     authService.login(username, password)
-        .then(savedUser => {
-            res.status(201).send(savedUser);
+        .then(result => {
+            res.status(200).json(result);
         })
         .catch(error => {
-            res.status(500).send({error: "Internal Server Error!"})
-        })
-
-    res.send('This route login a user');
-
-})
+            console.error(error);
+            res.status(error.status || 500).json({ error: error.message || 'Login failed' });
+        });
+});
 
 router.post('/register', function(req, res) {
     const { username, password } = req.body;
