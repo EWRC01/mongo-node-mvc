@@ -40,8 +40,6 @@ router.get('/product/:id', function (req, res) {
         });
 });
 
-
-// Patch one product
 // Patch one product
 router.patch('/product/:id', function (req, res) {
     const { id } = req.params;
