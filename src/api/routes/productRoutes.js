@@ -2,11 +2,12 @@ const express = require('express');
 const Product = require('../products/models/productModel');
 const router = express.Router();
 const productSevice = require('../products/service/productService')
+const verifyToken = require('../middleware/authMiddleware');
 
 router.use(express.json());
 
 // Get product
-router.get('/product', function (req, res){
+router.get('/product', verifyToken, function (req, res){
     productSevice.getAll()
      .then(products => res.send(products))
      .catch(error => {
@@ -15,7 +16,7 @@ router.get('/product', function (req, res){
 });
 
 // Post Product
-router.post('/product', function (req, res) {
+router.post('/product', verifyToken, function (req, res) {
     const { title, description, price } = req.body; // Assuming these values are coming from the request body
 
     productSevice.createProduct(title, description, price)
@@ -29,7 +30,7 @@ router.post('/product', function (req, res) {
 });
 
 // Get one Product
-router.get('/product/:id', function (req, res) {
+router.get('/product/:id', verifyToken, function (req, res) {
     const { id } = req.params;
 
     productSevice.getOne(id)
@@ -41,7 +42,7 @@ router.get('/product/:id', function (req, res) {
 });
 
 // Patch one product
-router.patch('/product/:id', function (req, res) {
+router.patch('/product/:id', verifyToken, function (req, res) {
     const { id } = req.params;
     const { title, description, price } = req.body;
 
@@ -54,7 +55,7 @@ router.patch('/product/:id', function (req, res) {
 
 
 // Delete one product
-router.delete('/product/:id', function(req, res){
+router.delete('/product/:id', verifyToken, function(req, res){
     const {id} = req.params
     productSevice.deleteProduct(id)
      .then(product => res.send(product))
