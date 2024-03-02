@@ -15,7 +15,6 @@ router.use(express.json());
 
 /**
  * @swagger
- * path:
  *   /products:
  *     get:
  *       summary: Get all products
@@ -46,7 +45,6 @@ router.get('/', verifyToken, function (req, res) {
 
 /**
  * @swagger
- * path:
  *   /products:
  *     post:
  *       summary: Create a new product
@@ -99,7 +97,6 @@ router.post('/', verifyToken, function (req, res) {
 
 /**
  * @swagger
- * path:
  *   /products/{id}:
  *     get:
  *       summary: Get a specific product by ID
@@ -139,7 +136,6 @@ router.get('/:id', verifyToken, function (req, res) {
 
 /**
  * @swagger
- * path:
  *   /products/{id}:
  *     patch:
  *       summary: Update a specific product by ID
@@ -196,7 +192,6 @@ router.patch('/:id', verifyToken, function (req, res) {
 
 /**
  * @swagger
- * path:
  *   /products/{id}:
  *     delete:
  *       summary: Delete a specific product by ID

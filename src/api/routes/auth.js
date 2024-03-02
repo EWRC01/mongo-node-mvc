@@ -14,7 +14,6 @@ const authService = require('../auth/service/authService');
 // Swagger annotations for the /auth/login route
 /**
  * @swagger
- * path:
  *   /auth/login:
  *     post:
  *       summary: Login to obtain an authentication token
@@ -50,7 +49,6 @@ const authService = require('../auth/service/authService');
 // Swagger annotations for the /auth/register route
 /**
  * @swagger
- * path:
  *   /auth/register:
  *     post:
  *       summary: Register a new user
